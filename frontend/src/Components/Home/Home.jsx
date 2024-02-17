@@ -10,7 +10,7 @@ const Home=()=> {
           <div className='topContainer-homepage'>
             <div className='topContainerDark-homepage'>
               <div className='topContainerContent-homepage'>
-                <div className='title-homepage'><h1 className='h1-homepage'>Garbage Collection</h1></div>
+                <div className='title-homepage'><h1 className='h1-homepage'>Green Routes : Efficient Garbage Collection Path</h1></div>
             </div>
               <div className='topContainerDarker-homepage'></div>
           </div></div>
