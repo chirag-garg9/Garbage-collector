@@ -8,13 +8,20 @@ import pymongo
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 import secrets
-
-query = {"id":0}
+k=0
+query = {"id":k}
 client = pymongo.MongoClient("mongodb://localhost:27017/")
 db = client['Test']
 collection = db['location']
 collection.insert_one(query)
-# streamer = Flask(__name__) creates a Flask application instance called streamer. Flask is a web
+database = collection.find_one(query)
+database = collection.find_one({f"{81.791237},{21.126904}":2})
+database = collection.find_one({f"{81.791237},{21.126904}":2})
+# database[f"{81.783936},{21.152296}"] = 2
+# collection.update_one(query, {"$set": database}, upsert=True)
+# database[f"{81.759807},{21.158528}"] = 2
+# collection.update_one(query, {"$set": database}, upsert=True)
+# # streamer = Flask(__name__) creates a Flask application instance called streamer. Flask is a web
 # framework for Python that allows you to build web applications. __name__ is a special variable in
 # Python that represents the name of the current module. By passing __name__ as an argument to
 # Flask, it tells Flask to use the current module as the starting point for the application.
@@ -25,6 +32,7 @@ def add_camera(video_url,long,lati,query):
     stream = streaming()
     stream.set_data(long,lati,video_url,query)
     stream.generate_frames(m,collection)
+    return "Sucess"
 users_collection = db['user']
 jwt_secret_key = secrets.token_urlsafe(32)
 # Configuration for JWT
@@ -84,12 +92,15 @@ def protected():
 @streamer.route('/uploadvideo',methods = ['POST','GET'])
 @cross_origin()
 def start_stream():
+    global k
     if(request.method == 'POST'):
         video_url = request.form.get('video_url')
         long = request.form['logi']
         lati = request.form['lati']
         collection.insert_one(query)
         Thread(target=add_camera,args=[video_url,long,lati,query]).start()
+    return "Success"
+    
         
 
 @streamer.route('/locations', methods=['GET'])

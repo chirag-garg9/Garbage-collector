@@ -35,17 +35,23 @@ export default function MapComponent() {
     const marker = new mapboxgl.Marker().setLngLat([currentLocation.lng, currentLocation.lat]).addTo(map);
 
     const fetchLocationsFromBackend = async () => {
+      await new Promise(resolve => setTimeout(resolve, 10000));
       try {
         const response = await fetch('http://localhost:4000/locations', {
           method: 'GET',
-          mode: 'no-cors'
         });
         const data = await response.json();
+    
+        // Adding a 5-second delay
         setLocationsFromBackend(data);
       } catch (error) {
         console.error('Error fetching locations from backend:', error.message);
       }
+      setTimeout(() => {
+        addMarkersForLocations();
+      }, 1);
     };
+    
     
 
     const addMarkersForLocations = () => {
@@ -112,7 +118,6 @@ export default function MapComponent() {
       // Send a request to calculate the path
       const response = await fetch('http://localhost:4000/calculate-path', {
         method: 'POST',
-        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json',
         },

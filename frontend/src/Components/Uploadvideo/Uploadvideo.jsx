@@ -26,7 +26,7 @@ const Uploadvideo = () => {
     e.preventDefault();
 
     // Check if either the video file or the video URL is filled
-    if (!selectedVideo) {
+    if (!videoUrl) {
       alert('Please select a Cam IP to add.');
       return;
     }
