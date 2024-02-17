@@ -84,6 +84,8 @@ def calculate_shoretest_path(locations):
     graph = create_graph(locations,times)
     path = tsp_with_fixed_start_end(graph,len(locations)-1,len(locations))
     path_data = path[0]
+    for i in path[0]:
+        path_data[i] = locations_data[i]
     return path_data
 
 def path_upadtor(collection,query):
@@ -103,6 +105,8 @@ def path_upadtor(collection,query):
             graph = create_graph(locations,times)
             path = tsp_with_fixed_start_end(graph,len(locations)-1,len(locations))
             path_data = path[0]
+            for i in path[0]:
+                path_data[i] = locations_data[i]
             
         else:
             k = False
@@ -122,4 +126,5 @@ def path_upadtor(collection,query):
                 times = calculate_travel_times(locations[-1],locations[:-2],locations[-2],'5b3ce3597851110001cf6248c14032d634d540ff9c53296d8dab6539')
                 graph = create_graph(locations,times)
                 path = tsp_with_fixed_start_end(graph,len(locations)-1,len(locations))
-                path_data = path[0]
+                for i in path[0]:
+                    path_data[i] = locations_data[i]
