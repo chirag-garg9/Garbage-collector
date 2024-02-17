@@ -16,7 +16,6 @@ const Home=()=> {
             <div className='topContainerDark-homepage'>
               <div className='topContainerContent-homepage'>
                 <div className='title-homepage'><h1 className='h1-homepage'>Pothole Detection using ML Model</h1></div>
-            <a href="/form"><button className='button-homepage'><img src={complaintImg} alt="" className='complaintImg-button' /> Register Complaint </button></a>
             </div>
               <div className='topContainerDarker-homepage'></div>
           </div></div>

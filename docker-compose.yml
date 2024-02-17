@@ -25,4 +25,24 @@ services:
       - backend
     environment:
       - WATCHPACK_POLLING=true
+
+  mongo:
+    image: mongo:latest
+    restart: always
+    command: > 
+      bash -c "mkdir -p ./data/db"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "${MONGO_ROOT_USERNAME:-Smart_door_master}"
+      MONGO_INITDB_ROOT_PASSWORD: "${MONGO_ROOT_PASSWORD:-Smart_door_master}"
+    ports:
+      - "27017:27017"
+    depends_on:
+      - backend
+      - frontend
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
+    driver: local
        

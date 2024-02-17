@@ -20,10 +20,7 @@ const Navbar = () => {
           <Link to="/map" className="navbar-link">Map</Link>
         </li>
         <li className="navbar-item">
-          <Link to="/uploadvideo" className="navbar-link">Stream</Link>
-        </li>
-        <li className="navbar-item">
-          <Link to="/form" className="navbar-link">Form</Link>
+          <Link to="/uploadvideo" className="navbar-link">Add Camera</Link>
         </li>
       </ul>
       <div className="navbar-hamburger" onClick={handleClick}>
