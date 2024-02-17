@@ -11,8 +11,8 @@ const Footer = () => {
                     <h2>Team Members</h2>
                     <ul>
                         <a href="https://github.com/chirag-garg9" target="_blank"><li>Chirag Garg</li></a>
-                        <a href="https://github.com/ayushshukla011" target="_blank"><li>Harsh Sharma</li></a>
-                        <a href="https://github.com/harshpastor" target="_blank"><li>Tushar Paik</li></a>
+                        <a href="https://github.com/codervoder69" target="_blank"><li>Harsh Sharma</li></a>
+                        <a href="https://github.com/tusharpaik123" target="_blank"><li>Tushar Paik</li></a>
                     </ul>
                 </div>
             </div>

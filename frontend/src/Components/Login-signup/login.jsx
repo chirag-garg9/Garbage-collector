@@ -1,4 +1,7 @@
+// LoginSignup.js
+
 import React, { useState } from 'react';
+import './login.css';
 
 const LoginSignup = () => {
   const [email, setEmail] = useState('');
@@ -33,7 +36,7 @@ const LoginSignup = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <h2>{isLogin ? 'Login' : 'Sign Up'}</h2>
       <input
         type="email"
@@ -48,11 +51,12 @@ const LoginSignup = () => {
         onChange={(e) => setPassword(e.target.value)}
       />
       <button onClick={handleLoginSignup}>{isLogin ? 'Login' : 'Sign Up'}</button>
-      <p onClick={() => setIsLogin(!isLogin)}>
-        {isLogin ? 'Don\'t have an account? Sign up' : 'Already have an account? Login'}
+      <p className='para' onClick={() => setIsLogin(!isLogin)}>
+        {isLogin ? "Don't have an account? Sign up" : "Already have an account? Login"}
       </p>
     </div>
   );
 };
 
 export default LoginSignup;
+
