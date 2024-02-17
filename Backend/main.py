@@ -1,47 +1,41 @@
 from threading import Thread
 from stream import streaming
 import os
-from upload_images import upload_images
-from flask import Flask, request, Response
-import firebase_admin
-from firebase_admin import credentials, storage, firestore
-
+from flask import Flask, request, Response, jsonify
+import pymongo
+query = {"id":0}
+client = pymongo.MongoClient("mongodb://localhost:27017/")
+db = client['Test']
+collection = db['location']
 # streamer = Flask(__name__) creates a Flask application instance called streamer. Flask is a web
 # framework for Python that allows you to build web applications. __name__ is a special variable in
 # Python that represents the name of the current module. By passing __name__ as an argument to
 # Flask, it tells Flask to use the current module as the starting point for the application.
-db = firestore.client()
-bucket = storage.bucket()
+m=0
 streamer = Flask(__name__)
-initial = os.getcwd()
-if not os.path.exists(f"{initial}/location"):
-    os.mkdir(f"{initial}/location")
-    
-stream = streaming()
+def add_camera(video_url,long,lati,query):
+    stream = streaming()
+    stream.set_data(long,lati,video_url,query)
+    stream.generate_frames(m,collection)
 
 @streamer.route('/uploadvideo',methods = ['POST','GET'])
 def start_stream():
     if(request.method == 'POST'):
-        video_data = request.files.get('video')
         video_url = request.form.get('video_url')
-        print(video_url)
-        if(video_data):
-            video_data = request.files['video'].read()
         long = request.form['logi']
         lati = request.form['lati']
-        stream.set_data(long,lati,video_data=video_data,video_url=video_url)
-    if(stream.cap!= None and stream.cap.isOpened()):
-        return Response(stream.generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
-    else: return Response("<h1>Error opening video stream", status=500)
-    
-@streamer.route('/stop_stream')
-def stop_stream():
-    os.remove(stream.path_video)
-    stream.cap.release()
-    stream.cap = None
-    stream.lati = None
-    stream.long = None
-    return Response("Stream Ended", status=200)
+        collection.insert_one(query)
+        Thread(target=add_camera,args=[video_url,long,lati,query]).start()
+        
+
+@streamer.route('/locations', methods=['GET'])
+def get_locations():
+    try:
+        locations = list(collection.find_one(query).keys())[2:]
+        return jsonify(locations)
+    except Exception as e:
+        print(f"Error fetching locations: {str(e)}")
+        return jsonify({'error': 'Internal Server Error'}), 500
     
 def run_app():
     streamer.run(host='0.0.0.0',port=4000)
@@ -49,9 +43,6 @@ def run_app():
 if __name__ == '__main__':
     # The code snippet is creating two threads, runner and upload, and starting them using the
     # start() method.
-    upload = Thread(target=upload_images,args=(db,bucket))
     Thread_stream = Thread(target=run_app)
     Thread_stream.start()
-    upload.start()
     Thread_stream.join()
-    upload.join()
