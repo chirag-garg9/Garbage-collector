@@ -1,0 +1,47 @@
+/* login.css */
+
+.container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    margin: 100px auto; /* Center the container */
+  }
+  
+  h2 {
+    text-align: center;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+   .para {
+    text-align: center;
+    cursor: pointer;
+    color: #425468;
+  } 
+  
+   .para:hover {
+    text-decoration: underline;
+  } 
+  
