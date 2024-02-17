@@ -22,6 +22,9 @@ const Navbar = () => {
         <li className="navbar-item">
           <Link to="/uploadvideo" className="navbar-link">Add Camera</Link>
         </li>
+        <li className="navbar-item">
+          <Link to="/Login-signup" className="navbar-link">Login/Signup</Link>
+        </li>
       </ul>
       <div className="navbar-hamburger" onClick={handleClick}>
         <div className={`hamburger-line ${open ? 'hamburger-open' : ''}`}></div>

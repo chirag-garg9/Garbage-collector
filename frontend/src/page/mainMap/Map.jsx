@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import mapboxgl from 'mapbox-gl';
-import {getCoordinate } from '../../utilities/Firebase'
+// import {getCoordinate } from '../../utilities/Firebase'
 import './style.css'
 import { useNavigate,useParams } from 'react-router-dom';
 

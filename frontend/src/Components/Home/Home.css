@@ -15,13 +15,13 @@
     padding-top: 4rem;
     width: 100%;
     height: 90vh;
-    backdrop-filter: brightness(60%);
+    backdrop-filter: brightness(70%);
     /* background-color: rgba(43, 41, 41, 0.195); */
 }
 .topContainerVoid-homepage{
     width: 100%;
-    height: 100vh;
-    background-image: url("../../assets/Images/Pothole-homepage.jpg");
+    height: 93vh;
+    background-image: url("../../assets/Images/pexels-kelly-2382894.jpg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -31,14 +31,14 @@
     top: 0;
     width: 40%;
     height: 95vh;
-    background-image: linear-gradient(to right,rgba(0, 0, 0, 0.563),rgba(0, 0, 0, 0.246),rgba(0, 0, 0, 0.074));
+    /* background-image: linear-gradient(to right,rgba(0, 0, 0, 0.563),rgba(0, 0, 0, 0.246),rgba(0, 0, 0, 0.074)); */
 }
 .topContainerContent-homepage{
     z-index: 10;
     /* display: grid; */
     text-align: left;
     position: relative;
-    top:35vh;
+    top:30vh;
     left:5vw; 
     width: 80vw;
 }
@@ -52,12 +52,7 @@
     font-family: 'Poppins', sans-serif;
     font-size: 1rem;
 }
-.topContainerContent-homepage button:hover{
-    background-color: rgb(212, 58, 1);
-}
-.button-homepage{
-    background-color: orangered;
-}
+
 .mainContainerContent-2{
     position: relative;
     left: 30%;
